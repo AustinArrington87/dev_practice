@@ -2,12 +2,12 @@
 <head>
 </head>
 <body>
-<!--Single Product example-->
+<!--1) Single Product example-->
 <div id="app">
   <h2> {{ product }} are in stock</h2>
 </div>
 
-<!-- multiple Product example-->
+<!-- 2) multiple Product example-->
 <div id="mapp">
  <ul>
    <li v-for="product in products">
@@ -16,7 +16,7 @@
  </ul>
 </div>
 
-<!--DynamicContent Example--> 
+<!--3) DynamicContent Example--> 
 <!-- v-bind-->
 <div id="app-2">
  <span v-bind:title="message">
@@ -25,7 +25,7 @@
  </span>
 </div>
 
-<!-- Conditionals and Loops--> 
+<!-- 4) Conditionals and Loops--> 
 <!-- v-if -- >
 <div id="app-3">
  <span v-if="seen">Now you see me</span>
@@ -37,6 +37,19 @@
   <li v-for="todo in todos">
    {{ todo.text }}
  </ol>
+</div>
+
+<!--5) USER INTERACTION, INVOKE VUE EVENT--> 
+<!-- v-on attaches event listeners to invoke methods --> 
+<div id="app-5">
+  <p>{{ message }}</p>
+  <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+
+<!-- v-model is used for two-way binding between form and app state -->
+<div id="app-6">
+  <p>{{ message }}</p>
+  <input v-model="message">
 </div>
 
 
@@ -101,7 +114,26 @@ var app4 = new Vue({
 })
 // push a new item to list app4.todos.push({ text: 'New item' })
 
+// HANDLING USER INPUT -- Invoke a Vue method
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    message: 'Hello Vue.js!'
+  },
+  methods: {
+    reverseMessage: function () {
+    	this.message = this.message.split('').reverse().join('')
+    }
+  }
+})
 
+// two-way binding FORM
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+  	message: 'Hello Vue!'
+  }
+})
 
 </script>
 
