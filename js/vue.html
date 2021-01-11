@@ -2,12 +2,12 @@
 <head>
 </head>
 <body>
-<!--1) Single Product example-->
+<!--Single Product example-->
 <div id="app">
   <h2> {{ product }} are in stock</h2>
 </div>
 
-<!-- 2) multiple Product example-->
+<!--Multiple Product example-->
 <div id="mapp">
  <ul>
    <li v-for="product in products">
@@ -16,7 +16,7 @@
  </ul>
 </div>
 
-<!--3) DynamicContent Example--> 
+<!--DynamicContent Example--> 
 <!-- v-bind-->
 <div id="app-2">
  <span v-bind:title="message">
@@ -25,7 +25,7 @@
  </span>
 </div>
 
-<!-- 4) Conditionals and Loops--> 
+<!-- Conditionals and Loops--> 
 <!-- v-if -- >
 <div id="app-3">
  <span v-if="seen">Now you see me</span>
@@ -39,7 +39,7 @@
  </ol>
 </div>
 
-<!--5) USER INTERACTION, INVOKE VUE EVENT--> 
+<!--USER INTERACTION, INVOKE VUE EVENT--> 
 <!-- v-on attaches event listeners to invoke methods --> 
 <div id="app-5">
   <p>{{ message }}</p>
@@ -52,6 +52,18 @@
   <input v-model="message">
 </div>
 
+<!-- Visualizing a LIST from a COMPONENT -->
+<div id="app-7">
+  <ol>
+  	<todo-item
+  	  v-for="item in groceryList"
+  	  v-bind:todo="item"
+  	  v-bind:key="item.id"
+  	></todo-item>
+  </ol>
+</div>
+
+<!-- JS SCRIPTING -->
 
 <!-- bring in Vue library 
 <script src="https://unpkg.com/vue"></script>
@@ -132,6 +144,23 @@ var app6 = new Vue({
   el: '#app-6',
   data: {
   	message: 'Hello Vue!'
+  }
+})
+
+// Vue Component -- Pass in a PROPOSITION 
+Vue.component('todo-item', {
+	props: ['todo'],
+	template: '<li>{{ todo.text }}</li>'
+})
+
+var app7 = new Vue({
+  el: '#app-7',
+  data: {
+  	groceryList: [
+  	  { id: 0, text: 'Vegetables' },
+  	  { id: 1, text: 'Cheese' },
+  	  { id: 2, text: 'Whatever else humans are supposed to eat'}
+  	]
   }
 })
 
